@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Generated files
+data/output.ics
+
+# macOS
+.DS_Store
+
+data/Seifermann_Sola.ics
