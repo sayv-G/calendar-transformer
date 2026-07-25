@@ -1,34 +1,35 @@
-from pathlib import Path
+import sys
 
-from icalendar import Calendar
-
+from calendar_io import load_calendar, save_calendar
 from config import load_yaml
-from parser import parse_summary
-from transformer import transform_event
+from processor import transform_calendar
 
-subjects = load_yaml("subjects.yaml")
-teachers = load_yaml("teachers.yaml")
 
-ics_file = Path("data/Seifermann_Sola.ics")
+def main():
+    if len(sys.argv) != 3:
+        print("Verwendung:")
+        print("python main.py <input.ics> <output.ics>")
+        return
 
-with open(ics_file, "rb") as f:
-    cal = Calendar.from_ical(f.read())
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
 
-count = 0
+    subjects = load_yaml("subjects.yaml")
+    teachers = load_yaml("teachers.yaml")
 
-for event in cal.walk("VEVENT"):
-    summary = str(event.get("SUMMARY"))
+    calendar = load_calendar(input_file)
 
-    parsed = parse_summary(summary)
+    count = transform_calendar(
+        calendar,
+        subjects,
+        teachers,
+    )
 
-    subject = subjects.get(parsed["subject"], parsed["subject"])
+    save_calendar(calendar, output_file)
 
-    transform_event(event, parsed, subject, teachers)
+    print(f"✅ {count} Termine verarbeitet.")
+    print(f"💾 Gespeichert: {output_file}")
 
-    count += 1
 
-with open("data/output.ics", "wb") as f:
-    f.write(cal.to_ical())
-
-print(f"✅ {count} Termine verarbeitet.")
-print("💾 Neue Datei gespeichert: data/output.ics")
+if __name__ == "__main__":
+    main()
