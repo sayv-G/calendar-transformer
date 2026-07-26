@@ -1,17 +1,22 @@
-def transform_event(event, parsed, subject, teachers):
+def transform_event(event, parsed):
     original = str(event.get("SUMMARY"))
 
-    teacher = teachers.get(parsed["teacher"], parsed["teacher"])
+    if parsed["type"] != "LESSON":
+        event["SUMMARY"] = parsed["subject"]
+        return
 
-    event["SUMMARY"] = subject
+    event["SUMMARY"] = parsed["subject"]
 
-    description = f"""👨‍🏫 Lehrperson
-{teacher}
+    description = f"""👩‍🏫 Lehrperson
+
+{parsed["teacher"]}
 
 🏫 Klasse
-{parsed['class']}
+
+{parsed["class"]}
 
 📝 Original
+
 {original}
 """
 

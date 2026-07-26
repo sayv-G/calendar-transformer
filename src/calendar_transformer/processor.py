@@ -10,17 +10,17 @@ def transform_calendar(calendar, subjects, teachers):
 
         parsed = parse_summary(summary)
 
-        subject = subjects.get(
+        parsed["subject"] = subjects.get(
             parsed["subject"],
-            parsed["subject"],
+            parsed["subject"]
         )
 
-        transform_event(
-            event,
-            parsed,
-            subject,
-            teachers,
+        parsed["teacher"] = teachers.get(
+            parsed["teacher"],
+            parsed["teacher"]
         )
+
+        transform_event(event, parsed)
 
         count += 1
 
