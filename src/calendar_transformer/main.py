@@ -3,6 +3,7 @@ import sys
 from .calendar_io import load_calendar, save_calendar
 from .config import load_yaml
 from .processor import transform_calendar
+from .service import transform
 
 
 def main():
@@ -19,7 +20,7 @@ def main():
 
     calendar = load_calendar(input_file)
 
-    count = transform_calendar(
+    count = transform(
         calendar,
         subjects,
         teachers,
