@@ -18,4 +18,4 @@ def test_calendar():
     response = client.get("/calendar")
 
     assert response.status_code == 200
-    assert response.text == "Not implemented"
+    assert response.headers["content-type"].startswith("text/calendar")

@@ -13,5 +13,5 @@ from fastapi import Response
 def calendar():
     return Response(
         "Not implemented",
-        media_type="text/plain",
+        media_type="text/calendar",
     )
