@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Response
 from icalendar import Calendar
 from .service import transform
+from .calendar_io import load_calendar
 
 app = FastAPI()
 
@@ -12,7 +13,7 @@ def root():
 
 @app.get("/calendar")
 def calendar():
-    calendar = Calendar()
+    calendar = load_calendar("data/Seifermann_Sola.ics")
 
     calendar = transform(
         calendar,
