@@ -10,6 +10,8 @@ def transform_calendar(calendar, subjects, teachers):
 
         parsed = parse_summary(summary)
 
+        print(parsed)
+
         parsed["subject"] = subjects.get(
             parsed["subject"],
             parsed["subject"]
