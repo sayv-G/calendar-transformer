@@ -13,6 +13,8 @@ dependencies = [
     "icalendar",
     "requests",
     "pyyaml",
+    "fastapi",
+    "uvicorn",
 ]
 
 [tool.setuptools]
