@@ -1,5 +1,5 @@
-from parser import parse_summary
-from transformer import transform_event
+from .parser import parse_summary
+from .transformer import transform_event
 
 
 def transform_calendar(calendar, subjects, teachers):

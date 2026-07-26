@@ -1,8 +1,8 @@
 import sys
 
-from calendar_io import load_calendar, save_calendar
-from config import load_yaml
-from processor import transform_calendar
+from .calendar_io import load_calendar, save_calendar
+from .config import load_yaml
+from .processor import transform_calendar
 
 
 def main():
