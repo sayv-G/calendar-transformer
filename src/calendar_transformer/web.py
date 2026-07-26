@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
+from icalendar import Calendar
 
 app = FastAPI()
 
@@ -7,11 +8,12 @@ app = FastAPI()
 def root():
     return {"status": "ok"}
 
-from fastapi import Response
 
 @app.get("/calendar")
 def calendar():
+    calendar = Calendar()
+
     return Response(
-        "Not implemented",
+        calendar.to_ical(),
         media_type="text/calendar",
     )

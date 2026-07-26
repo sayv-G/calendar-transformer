@@ -19,3 +19,4 @@ def test_calendar():
 
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/calendar")
+    assert "BEGIN:VCALENDAR" in response.text
