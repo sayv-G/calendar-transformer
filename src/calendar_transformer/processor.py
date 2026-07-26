@@ -15,10 +15,10 @@ def transform_calendar(calendar, subjects, teachers):
             parsed["subject"]
         )
 
-        parsed["teacher"] = teachers.get(
-            parsed["teacher"],
-            parsed["teacher"]
-        )
+        parsed["teachers"] = [
+            teachers.get(code, code)
+            for code in parsed["teachers"]
+        ]
 
         transform_event(event, parsed)
 

@@ -7,13 +7,16 @@ def transform_event(event, parsed):
 
     event["SUMMARY"] = parsed["subject"]
 
+    teacher_text = "\n".join(parsed["teachers"])
+    class_text = "\n".join(parsed["classes"])
+
     description = f"""👩‍🏫 Lehrperson
 
-{parsed["teacher"]}
+{teacher_text}
 
 🏫 Klasse
 
-{parsed["class"]}
+{class_text}
 
 📝 Original
 

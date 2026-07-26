@@ -5,13 +5,13 @@ def parse_summary(summary: str) -> dict:
         return {
             "type": "EVENT",
             "subject": summary,
-            "class": "",
-            "teacher": "",
+            "classes": [],
+            "teachers": [],
         }
 
     return {
         "type": "LESSON",
         "subject": parts[0],
-        "class": parts[1],
-        "teacher": parts[2],
+        "classes": parts[1].split(","),
+        "teachers": parts[2].split(","),
     }
