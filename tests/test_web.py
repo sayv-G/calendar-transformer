@@ -21,3 +21,8 @@ def test_calendar():
     assert response.headers["content-type"].startswith("text/calendar")
     assert "BEGIN:VCALENDAR" in response.text
     assert "VEVENT" in response.text
+
+def test_calendar_with_url_parameter():
+    response = client.get("/calendar?url=https://example.com/test.ics")
+
+    assert response.status_code == 400

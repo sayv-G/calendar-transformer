@@ -12,7 +12,13 @@ def root():
 
 
 @app.get("/calendar")
-def calendar():
+def calendar(url: str | None = None):
+    if url is not None:
+        return Response(
+            "URL support not implemented yet",
+            status_code=400,
+        )
+
     calendar = load_calendar("data/Seifermann_Sola.ics")
 
     calendar = transform(
